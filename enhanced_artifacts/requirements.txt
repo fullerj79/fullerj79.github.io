@@ -3,3 +3,4 @@ dash-bootstrap-components==2.0.4
 pymongo==4.16.0
 python-dotenv==1.2.1
 certifi
+gunicorn
