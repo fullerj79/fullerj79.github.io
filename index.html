@@ -1,0 +1,662 @@
+---
+title: "Jason Fuller | CS ePortfolio"
+---
+
+<style>
+  :root{
+    --snhu-navy:#002F6C;
+    --snhu-gold:#FDB913;
+    --text:#111827;
+    --muted:#6b7280;
+    --card:#ffffff;
+    --bg:#f6f8fc;
+    --border:#e5e7eb;
+  }
+
+  body{
+    color: var(--text);
+    background:
+      radial-gradient(1400px 700px at 10% 8%, rgba(0,47,108,0.36), transparent 62%),
+      radial-gradient(1100px 640px at 88% 10%, rgba(253,185,19,0.22), transparent 62%),
+
+      radial-gradient(1200px 720px at 18% 52%, rgba(0,47,108,0.20), transparent 60%),
+      radial-gradient(1000px 680px at 82% 58%, rgba(253,185,19,0.14), transparent 60%),
+
+      radial-gradient(1200px 760px at 55% 115%, rgba(0,47,108,0.18), transparent 58%),
+      radial-gradient(900px 720px at 12% 112%, rgba(253,185,19,0.12), transparent 58%),
+
+      linear-gradient(180deg, #e7eefc 0%, #f1f5ff 42%, #f6f8fc 100%);
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  .wrap{ max-width: 980px; margin: 0 auto; padding: 2.25rem 1.25rem 3rem; }
+
+  .hero{
+    display:flex; gap:1.6rem; align-items:flex-start; padding: 1.6rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.66));
+    border: 1px solid rgba(255,255,255,0.45);
+    border-radius: 18px;
+    box-shadow:
+      0 18px 50px rgba(0,0,0,0.12),
+      inset 0 0 0 1px rgba(0,47,108,0.06);
+    backdrop-filter: blur(10px);
+  }
+
+  .headshot{
+    width: 150px; height: 150px; border-radius: 18px; object-fit: cover;
+    border: 3px solid rgba(0,47,108,0.25);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+    background:#fff;
+    margin-top: 0.1rem;
+    flex: 0 0 auto;
+  }
+
+  h1{ margin: 0; font-size: 2rem; line-height: 1.15; color: var(--snhu-navy); letter-spacing: -0.02em; }
+  .subtitle{ margin: 0.35rem 0 0.7rem; font-size: 1.05rem; color: var(--muted); }
+
+  .hero-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap: 1rem;
+  }
+
+  .socials{
+    display:flex;
+    gap: 0.5rem;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-top: 0.1rem;
+  }
+
+  .icon-btn{
+    width:40px;
+    height:40px;
+    display:grid;
+    place-items:center;
+    border-radius: 12px;
+    color: var(--snhu-navy);
+    background: rgba(255,255,255,.82);
+    border:1px solid rgba(0,0,0,.08);
+    transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+    text-decoration:none;
+  }
+
+  .icon-btn svg{ width:20px; height:20px; }
+
+  .icon-btn:hover{
+    transform:translateY(-1px);
+    background:#fff;
+    box-shadow:0 12px 26px rgba(0,0,0,0.10);
+  }
+
+  .icon-btn:focus-visible{
+    outline:3px solid rgba(0,120,255,.35);
+    outline-offset:2px;
+  }
+
+  .pill-row{
+    display:flex;
+    flex-wrap: nowrap;
+    gap:0.5rem;
+    margin-top: 0.35rem;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+  }
+
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap: 0.4rem;
+    padding: 0.34rem 0.58rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    background: rgba(255,255,255,0.92);
+    border:1px solid rgba(0,0,0,0.06);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .pill strong{ color: var(--snhu-navy); }
+
+  .honors{
+    margin-top: 0.55rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  .honors strong{ color: var(--snhu-navy); }
+
+  .honor-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.45rem;
+    height:40px;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(253,185,19,0.70);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    text-decoration:none;
+  }
+  .honor-badge:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+    background:#fff;
+  }
+
+  .honor-badge img{ object-fit: contain; display:block; }
+
+  .honor-badge.nsls img{
+    width:64px;
+    height:38px;
+  }
+
+  .honor-badge.asl img{
+    width:30px;
+    height:30px;
+  }
+
+  .honor-text{
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: #111;
+    line-height: 1;
+    transform: translateY(0.5px);
+  }
+
+  /* ✅ NAVBAR: full width, separators back, links spaced */
+  .nav-wrap{
+    margin-top: 0.9rem;
+    padding: 0.52rem 1rem;
+    border-radius: 14px;
+    background: rgba(0,47,108,0.94);
+    border: 1px solid rgba(0,47,108,0.35);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.10);
+  }
+
+  .nav-bar{
+    display:flex;
+    align-items:center;
+    gap: 1rem;
+    flex-wrap:wrap;
+  }
+
+  .jump-label{
+    color: rgba(253,185,19,0.98);
+    font-weight: 900;
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .nav-links{
+    flex: 1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 0.9rem;
+    flex-wrap:nowrap;
+    min-width: 0;
+  }
+
+  .nav-item{
+    display:flex;
+    align-items:center;
+    gap: 0.9rem;
+    min-width: 0;
+  }
+
+  .nav-links a{
+    color: rgba(253,185,19,0.98);
+    text-decoration:none;
+    font-weight: 850;
+    font-size: 0.98rem;
+    padding: 0.15rem 0.1rem;
+    border-bottom: 2px solid transparent;
+    transition: transform .12s ease, border-color .12s ease, opacity .12s ease;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover{
+    border-bottom-color: rgba(253,185,19,0.98);
+    transform: translateY(-1px);
+    opacity: 1;
+  }
+
+  .nav-links a:focus-visible{
+    outline: 3px solid rgba(253,185,19,0.55);
+    outline-offset: 2px;
+  }
+
+  .nav-sep{
+    color: rgba(253,185,19,0.55);
+    font-weight: 900;
+    user-select:none;
+  }
+
+  .section{
+    margin-top: 1.6rem; background: rgba(255,255,255,0.92); border:1px solid rgba(0,0,0,0.06);
+    border-radius: 18px; padding: 1.25rem 1.5rem;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.05);
+  }
+  .section h2{
+    margin: 0 0 0.85rem; font-size: 1.25rem; color: var(--snhu-navy);
+    display:flex; align-items:center; gap:0.55rem;
+  }
+  .bar{ width: 10px; height: 18px; border-radius: 6px; background: var(--snhu-gold); display:inline-block; }
+
+  .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+  .col-4{ grid-column: span 4; }
+  .col-6{ grid-column: span 6; }
+  .col-12{ grid-column: span 12; }
+
+  .card{
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 0.95rem;
+    background: rgba(255,255,255,0.96);
+    height: 100%;
+  }
+  .card h3{ margin: 0 0 0.35rem; color: var(--snhu-navy); font-size: 1.05rem; }
+  .muted{ color: var(--muted); }
+
+  .callout{
+    border: 1px solid rgba(253,185,19,0.55);
+    background: rgba(253,185,19,0.12);
+    border-radius: 16px;
+    padding: 1rem;
+  }
+
+  /* ✅ Make the 3 cards sit visually tighter under the callout */
+  .capstone-grid{
+    margin-top: 0.9rem;
+  }
+
+  .pill-card{
+    display:flex;
+    flex-direction:column;
+    gap: 0.55rem;
+    height: 100%;
+  }
+
+  .mini-tile{
+    display:flex;
+    align-items:center;
+    gap:0.7rem;
+    padding: 0.75rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: linear-gradient(135deg, rgba(0,47,108,0.12), rgba(0,0,0,0.02));
+    text-decoration:none;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.06);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+
+  .mini-tile:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+  }
+
+  .mini-play{
+    width:52px;
+    height:52px;
+    border-radius: 999px;
+    display:grid;
+    place-items:center;
+    background: rgba(0,47,108,0.92);
+    color:#fff;
+    font-size: 1.25rem;
+    border: 3px solid rgba(253,185,19,0.85);
+    box-shadow: 0 16px 26px rgba(0,0,0,0.16);
+    flex: 0 0 auto;
+  }
+
+  .mini-title{
+    font-weight: 900;
+    color: var(--snhu-navy);
+    line-height: 1.15;
+  }
+  .mini-sub{
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-top: 0.15rem;
+  }
+
+  hr{ border:none; border-top:1px solid rgba(0,0,0,0.06); margin: 1.25rem 0; }
+
+  .footer{ margin-top: 1.25rem; text-align:center; color: var(--muted); font-size: 0.9rem; }
+
+  .cta-row{ display:flex; flex-wrap:wrap; gap:0.6rem; margin-top: 1rem; }
+  .btn{
+    display:inline-block; padding: 0.55rem 0.9rem; border-radius: 12px;
+    text-decoration:none; font-weight:650;
+    border:1px solid rgba(0,0,0,0.06); background:#fff; color: var(--snhu-navy);
+  }
+  .btn.primary{ background: var(--snhu-navy); color:#fff; border-color: rgba(0,47,108,0.35); }
+  .btn.accent{ background: rgba(253,185,19,0.23); color: var(--snhu-navy); border-color: rgba(253,185,19,0.55); }
+  .btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); }
+
+  .contact-card{ display:flex; flex-direction:column; gap: 0.65rem; }
+  .contact-actions{ display:flex; flex-wrap:wrap; gap: 0.6rem; margin-top: 0.25rem; }
+
+  .contact-link{
+    display:inline-flex;
+    align-items:center;
+    gap: 0.45rem;
+    padding: 0.52rem 0.75rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+    text-decoration:none;
+    color: var(--snhu-navy);
+    font-weight: 750;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .contact-link:hover{
+    transform: translateY(-1px);
+    background:#fff;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+  }
+  .contact-link svg{ width: 18px; height: 18px; }
+
+  @media (max-width: 900px){
+    .nav-links{ flex-wrap:wrap; justify-content:center; }
+    .nav-sep{ display:none; }
+  }
+
+  @media (max-width: 760px){
+    .hero{ flex-direction:column; text-align:center; align-items:center; }
+    .col-6, .col-4{ grid-column: span 12; }
+    .pill-row{ justify-content:center; }
+    .socials{ justify-content:center; }
+    .honors{ justify-content:center; }
+    .nav-wrap{ text-align:center; }
+    .nav-bar{ justify-content:center; }
+    .contact-actions{ justify-content:center; }
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="hero">
+    <img class="headshot" src="assets/headshot.jpg" alt="Professional headshot of Jason Fuller" />
+
+    <div style="flex:1;">
+      <div class="hero-top">
+        <div>
+          <h1>Jason Fuller</h1>
+          <p class="subtitle">Computer Science · Southern New Hampshire University (SNHU)</p>
+        </div>
+
+        <div class="socials">
+          <a class="icon-btn" href="mailto:jasonfuller1979@gmail.com" aria-label="Email Jason" title="Email">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="https://www.linkedin.com/in/jason-fuller-2569347" target="_blank" rel="noopener"
+             aria-label="Jason on LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4h4v16H4zM6 3.5a2 2 0 110 4 2 2 0 010-4zM10 9h4v2c.6-1.2 2.2-2.2 4.2-2.2C21 8.8 22 10.6 22 13v7h-4v-6.2c0-1.5-.5-2.5-1.8-2.5-1 0-1.6.7-1.9 1.3-.1.2-.1.6-.1.9V20h-4z" fill="currentColor"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="https://github.com/fullerj79" target="_blank" rel="noopener"
+             aria-label="Jason on GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor"
+                d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 011-2.7 3.6 3.6 0 01.1-2.7s.9-.3 2.8 1a9.7 9.7 0 015.2 0c1.9-1.3 2.8-1 2.8-1a3.6 3.6 0 01.1 2.7 3.9 3.9 0 011 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.8 1 .8 2.1v3.1c0 .3.2.6.7.5A10 10 0 0012 2z"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="https://meritpages.com/JasonFuller" target="_blank" rel="noopener"
+             aria-label="Merits & Honors" title="Merits & Honors">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2l2.5 6 6.5.5-5 4.2 1.6 6.3-5.6-3.4-5.6 3.4 1.6-6.3-5-4.2L9.5 8z"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="pill-row">
+        <span class="pill"><strong>A.S.:</strong> Computer Science (’25) 4.0</span>
+        <span class="pill"><strong>B.S.:</strong> Computer Science (’26)</span>
+        <i><span class="pill"><strong>MBA:</strong> Business Administration (’27)</span></i>
+      </div>
+
+      <div class="honors">
+        <strong>Honor Society's:</strong>
+
+        <a class="honor-badge nsls" href="https://www.nsls.org/" target="_blank" rel="noopener" aria-label="NSLS" title="NSLS">
+          <img src="assets/NSLS-Logo.png" alt="NSLS logo" />
+        </a>
+
+        <a class="honor-badge asl" href="https://www.alsiglam.org/" target="_blank" rel="noopener"
+           aria-label="Alpha Sigma Lambda" title="Alpha Sigma Lambda">
+          <img src="assets/alsiglam-logo.jpg" alt="Alpha Sigma Lambda logo" />
+          <span class="honor-text">ΑΣΛ</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-wrap">
+    <div class="nav-bar">
+      <span class="jump-label">Jump To:</span>
+
+      <div class="nav-links" aria-label="Jump to page sections">
+        <div class="nav-item">
+          <a href="#about-me">About Me</a>
+          <span class="nav-sep">|</span>
+          <a href="#capstone">Capstone Overview</a>
+          <span class="nav-sep">|</span>
+          <a href="#enhancements">Capstone Enhancements</a>
+          <span class="nav-sep">|</span>
+          <a href="#artifacts">Capstone Artifacts</a>
+          <span class="nav-sep">|</span>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section" id="about-me">
+    <h2><span class="bar"></span>About Me (Professional Self-Assessment)</h2>
+    <p>Coming soon...</p>
+  </div>
+
+  <div class="section" id="capstone">
+    <h2><span class="bar"></span>Capstone Overview</h2>
+
+    <div class="callout">
+      <p style="margin:0;">
+        <strong>Project Summary:</strong> I selected a Python-based adventure game originally built as a console project in <strong>IT-140</strong>.
+        For CS 499, I enhanced this single artifact across all three required categories (Software Design & Engineering, Algorithms & Data Structures,
+        and Databases) transforming it into a structured web application with persistent state and improved maintainability.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn accent" href="https://thefullermontyrelicrush.onrender.com" target="_blank" rel="noopener">Live Demo (Render)</a>
+        <a class="btn primary" href="capstone-after.md">Enhanced Artifact (Overview)</a>
+        <a class="btn" href="capstone-before.md">Original Artifact (Overview)</a>
+        <a class="btn" href="https://github.com/fullerj79/<TBD>" target="_blank" rel="noopener">Repository</a>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="grid capstone-grid">
+      <div class="col-4">
+        <div class="card pill-card">
+          <h3>Before</h3>
+          <ul class="muted" style="margin:0; padding-left: 1.2rem;">
+            <li>Single-file structure</li>
+            <li>Rigid console parsing</li>
+            <li>Hard-coded map + items</li>
+            <li>No persistence</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card pill-card">
+          <h3>After</h3>
+          <ul class="muted" style="margin:0; padding-left: 1.2rem;">
+            <li>Web UI (Dash)</li>
+            <li>FastAPI backend layer</li>
+            <li>Improved logic + scaling</li>
+            <li>MongoDB persistence</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card pill-card">
+          <h3>Code Review</h3>
+
+          <a class="mini-tile" href="https://youtube.com/watch?v=p2sD07a2oUg" target="_blank" rel="noopener">
+            <div class="mini-play">▶</div>
+            <div>
+              <div class="mini-title">Watch the Code Review</div>
+              <div class="mini-sub">Artifact walkthrough + enhancement plan</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="enhancements">
+    <h2><span class="bar"></span>Enhancements (Executive Summary)</h2>
+
+    <p class="muted">
+      Each enhancement category below links to a full narrative page that explains what was improved, what skills were demonstrated,
+      and how the work aligns with CS 499 course outcomes.
+    </p>
+
+    <div class="grid">
+      <div class="col-6">
+        <div class="card">
+          <h3>1) Software Design & Engineering</h3>
+          <p class="muted">
+            Refactored the project into a more maintainable architecture with clearer responsibilities, modular design,
+            and secure-first planning.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="enhancement-software-design.md">Read Narrative</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="card">
+          <h3>2) Algorithms & Data Structures</h3>
+          <p class="muted">
+            Improved correctness and scalability by refining game logic, validating actions reliably,
+            and selecting appropriate data structures.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="enhancement-algorithms.md">Read Narrative</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card">
+          <h3>3) Databases</h3>
+          <p class="muted">
+            Added persistence with MongoDB to support user profiles, saved progress, dynamic level loading,
+            and scalable gameplay design.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="enhancement-databases.md">Read Narrative</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="artifacts">
+    <h2><span class="bar"></span>Artifacts</h2>
+
+    <div class="grid">
+      <div class="col-12">
+        <div class="card">
+          <h3>Capstone Artifact</h3>
+          <p class="muted">
+            Original console artifact and enhanced web application overview pages with supporting enhancement narratives.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn" href="capstone-before.md">Original Artifact</a>
+            <a class="btn primary" href="capstone-after.md">Enhanced Artifact</a>
+            <a class="btn accent" href="https://thefullermontyrelicrush.onrender.com" target="_blank" rel="noopener">Live Demo</a>
+            <a class="btn" href="https://github.com/fullerj79/<TBD>" target="_blank" rel="noopener">Repository</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <h2><span class="bar"></span>Contact</h2>
+
+    <div class="contact-card">
+      <p class="muted" style="margin:0;">
+        The fastest way to reach me is by email or LinkedIn.
+      </p>
+
+      <div class="contact-actions">
+        <a class="contact-link" href="mailto:jasonfuller1979@gmail.com" aria-label="Email Jason">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          jasonfuller1979@gmail.com
+        </a>
+
+        <a class="contact-link" href="tel:xxx-xxx-xxxx" aria-label="Call Jason">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.5 3.5l3 2-1 2c1.2 2.2 3 4 5.2 5.2l2-1 2 3c.4.6.2 1.4-.3 1.8-1 .8-2.4 1.3-3.8 1.2-6.5-.4-11.7-5.6-12.1-12.1-.1-1.4.4-2.8 1.2-3.8.4-.5 1.2-.7 1.8-.3z"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          xxx-xxx-xxxx
+        </a>
+
+        <a class="contact-link" href="https://www.linkedin.com/in/jason-fuller-2569347" target="_blank" rel="noopener" aria-label="Jason on LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h4v16H4zM6 3.5a2 2 0 110 4 2 2 0 010-4zM10 9h4v2c.6-1.2 2.2-2.2 4.2-2.2C21 8.8 22 10.6 22 13v7h-4v-6.2c0-1.5-.5-2.5-1.8-2.5-1 0-1.6.7-1.9 1.3-.1.2-.1.6-.1.9V20h-4z"
+                  fill="currentColor"/>
+          </svg>
+          LinkedIn
+        </a>
+
+        <a class="contact-link" href="https://github.com/fullerj79" target="_blank" rel="noopener" aria-label="Jason on GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor"
+              d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 011-2.7 3.6 3.6 0 01.1-2.7s.9-.3 2.8 1a9.7 9.7 0 015.2 0c1.9-1.3 2.8-1 2.8-1a3.6 3.6 0 01.1 2.7 3.9 3.9 0 011 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.8 1 .8 2.1v3.1c0 .3.2.6.7.5A10 10 0 0012 2z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 Jason Fuller · Built with GitHub Pages
+  </div>
+
+</div>
