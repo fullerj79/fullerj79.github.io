@@ -1,4 +1,4 @@
-name: Sync enhanced_artifacts to Render deploy repo
+name: Sync enhanced_artifacts to deploy repo
 
 on:
   push:
@@ -10,17 +10,32 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Publish enhanced_artifacts to deploy repo
-        uses: s0/git-publish-subdir-action@v2.6.0
+      - name: Push subfolder to deploy repo
         env:
-          REPO: ${{ secrets.DEPLOY_REPO }}
-          BRANCH: main
-          FOLDER: enhanced_artifacts
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_REPO_TOKEN }}
-          MESSAGE: "Deploy: {sha}"
+          DEPLOY_REPO_TOKEN: ${{ secrets.DEPLOY_REPO_TOKEN }}
+        run: |
+          set -e
+
+          # Config git identity for the commit
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create a clean working directory containing ONLY the subfolder contents
+          rm -rf /tmp/deploy
+          mkdir -p /tmp/deploy
+          rsync -av --delete enhanced_artifacts/ /tmp/deploy/
+
+          cd /tmp/deploy
+          git init
+          git add -A
+          git commit -m "Deploy from monorepo: ${GITHUB_SHA}"
+
+          # Force-push to the deploy repo main branch
+          git branch -M main
+          git remote add origin "https://x-access-token:${DEPLOY_REPO_TOKEN}@github.com/fullerj79/the-fuller-monty-relic-rush-deploy.git"
+          git push -f origin main
