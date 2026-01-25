@@ -1,0 +1,27 @@
+name: Sync subfolder to Render deploy repo
+
+on:
+  push:
+    branches: ["main"]
+    # Optional: only run when the subfolder changes
+    # paths:
+    #   - "path/to/subfolder/**"
+    #   - ".github/workflows/sync-deploy-repo.yml"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Publish subfolder to deploy repo
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: https://x-access-token:${{ secrets.DEPLOY_REPO_TOKEN }}@github.com/${{ secrets.DEPLOY_REPO }}
+          BRANCH: main
+          FOLDER: enhanced_artifacts
+          MESSAGE: "Deploy: {sha}"
