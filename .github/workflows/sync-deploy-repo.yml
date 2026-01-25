@@ -37,5 +37,5 @@ jobs:
 
           # Force-push to the deploy repo main branch
           git branch -M main
-          git remote add origin "https://x-access-token:${DEPLOY_REPO_TOKEN}@github.com/fullerj79/the-fuller-monty-relic-rush-deploy.git"
+          git remote add origin "https://x-access-token:${DEPLOY_REPO_TOKEN}@github.com/fullerj79/the-fuller-monty-relic-rush.git"
           git push -f origin main
