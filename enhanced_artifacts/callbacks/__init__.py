@@ -13,9 +13,10 @@ are added (auth, game, admin, etc.).
 
 from callbacks.auth import register_auth_callbacks
 from callbacks.main import register_main_callbacks
+from callbacks.game import register_game_callbacks
 
 
-def register_callbacks(app, user_controller):
+def register_callbacks(app, user_controller, game_controller):
     """
     Register all callbacks for the app.
 
@@ -25,3 +26,4 @@ def register_callbacks(app, user_controller):
     """
     register_auth_callbacks(app, user_controller)
     register_main_callbacks(app)
+    register_game_callbacks(app, game_controller)

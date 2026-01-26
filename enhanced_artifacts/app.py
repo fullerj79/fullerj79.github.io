@@ -31,7 +31,9 @@ import dash_bootstrap_components as dbc
 
 from db.mongo import users_collection
 from models.user import UserModel
+from models.game import GameState, ROOMS
 from controllers.user import UserController
+from controllers.game import GameController
 
 from views.router import register_router
 from callbacks import register_callbacks
@@ -64,13 +66,15 @@ def create_app() -> dash.Dash:
 
     # Build Model layer (DB access lives here)
     user_model = UserModel(users_collection)
+    game_model = GameState(ROOMS)
 
     # Build Controller layer (auth/game flows live here)
     user_controller = UserController(user_model)
+    game_controller = GameController(game_model)
 
     # Wire router + callbacks (UI event handlers)
     register_router(app)
-    register_callbacks(app, user_controller=user_controller)
+    register_callbacks(app, user_controller=user_controller, game_controller=game_controller)
 
     return app
 

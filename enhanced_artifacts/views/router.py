@@ -4,6 +4,7 @@ from views.shell import top_nav
 from views.pages.login import layout_login
 from views.pages.signup import layout_signup
 from views.pages.main import layout_main
+from views.pages.game import layout_game
 
 
 def register_router(app):
@@ -35,5 +36,8 @@ def register_router(app):
 
         if pathname == "/main":
             return html.Div([top_nav(), layout_main()])
+
+        if pathname == "/game":
+            return html.Div([top_nav(), layout_game()])
 
         return html.Div([top_nav(), html.H2("404"), html.P("Page not found")])
