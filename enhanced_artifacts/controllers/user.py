@@ -32,8 +32,8 @@ from __future__ import annotations
 
 from typing import Tuple, Optional, Dict, Any
 
-from models.auth import hash_password, verify_password
-from models.user import UserModel
+from models.behavior.auth import hash_password, verify_password
+from models.repositories.user_repo import UserModelBase
 
 
 class UserController:
@@ -41,7 +41,7 @@ class UserController:
     Coordinates user login and signup flows using UserModel + auth helpers.
     """
 
-    def __init__(self, user_model: UserModel):
+    def __init__(self, user_model: UserModelBase):
         """
         Args:
             user_model: The model layer object responsible for DB reads/writes.

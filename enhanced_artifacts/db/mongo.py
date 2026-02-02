@@ -76,8 +76,11 @@ except Exception as e:
 # Collections
 try:
     users_collection = _db["users"]
+    levels_collection = _db["levels"]
+    game_saves_collection = _db["game_saves"]
+    game_results_collection = _db["game_results"]
 except Exception as e:
     raise RuntimeError(
-        f"MongoDB collection registry failed for 'users'. "
+        f"MongoDB collection registry failed. "
         f"Details: {type(e).__name__}: {e}"
     ) from e

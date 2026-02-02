@@ -24,16 +24,15 @@ Deploy note (Render):
 
 from dotenv import load_dotenv
 load_dotenv()
+import os
 
 import dash
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 
-from db.mongo import users_collection
-from models.user import UserModel
 from models.game import GameState, ROOMS
 from controllers.user import UserController
-from controllers.game import GameController
+from controllers.game_old import GameController
 
 from views.router import register_router
 from callbacks import register_callbacks
@@ -64,8 +63,30 @@ def create_app() -> dash.Dash:
         ]
     )
 
+    # Check .env for specialized environment. Bypasses MongoDB.
+    APP_MODE = os.getenv("APP_MODE", "PROD").upper()
+    if APP_MODE == "LOCAL":
+        from models.repositories.user_repo import LocalUserModel
+        from models.behavior.auth import hash_password
+
+        seed_users = {
+            "test@example.com": {
+                "display_name": "Test User",
+                "email": "test@example.com",
+                "password_hash": hash_password("password"),
+            }
+        }
+
+        user_model = LocalUserModel(seed_users)
+
+    else:
+        from db.mongo import users_collection
+        from models.repositories.user_repo import MongoUserModel
+
+        user_model = MongoUserModel(users_collection)
+
+
     # Build Model layer (DB access lives here)
-    user_model = UserModel(users_collection)
     game_model = GameState(ROOMS)
 
     # Build Controller layer (auth/game flows live here)
@@ -77,7 +98,6 @@ def create_app() -> dash.Dash:
     register_callbacks(app, user_controller=user_controller, game_controller=game_controller)
 
     return app
-
 
 app = create_app()
 
