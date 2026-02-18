@@ -122,7 +122,7 @@ class StandardScore(ScoreStrategy):
         )
 
         # ------------------------------------------------------------
-        # Difficulty → ScoringPolicy
+        # Difficulty > ScoringPolicy
         # ------------------------------------------------------------
 
         scoring_policy = level.difficulty.scoring_policy
@@ -136,7 +136,7 @@ class StandardScore(ScoreStrategy):
         )
 
         # ------------------------------------------------------------
-        # Score breakdown (debug-only)
+        # Score breakdown
         # ------------------------------------------------------------
 
         logger.debug(

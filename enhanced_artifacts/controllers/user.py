@@ -3,7 +3,7 @@ controllers/user.py
 
 Author: Jason Fuller
 
-User authentication controller (MVC).
+User authentication controller
 
 Responsibilities:
 - Validate user input for login and signup

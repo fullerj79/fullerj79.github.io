@@ -1,383 +1,7 @@
-<style>
-  :root{
-    --snhu-navy:#002F6C;
-    --snhu-gold:#FDB913;
-    --text:#111827;
-    --muted:#6b7280;
-    --card:#ffffff;
-    --bg:#f6f8fc;
-    --border:#e5e7eb;
-  }
-
-  body{
-    color: var(--text);
-    background:
-      radial-gradient(1400px 700px at 10% 8%, rgba(0,47,108,0.36), transparent 62%),
-      radial-gradient(1100px 640px at 88% 10%, rgba(253,185,19,0.22), transparent 62%),
-
-      radial-gradient(1200px 720px at 18% 52%, rgba(0,47,108,0.20), transparent 60%),
-      radial-gradient(1000px 680px at 82% 58%, rgba(253,185,19,0.14), transparent 60%),
-
-      radial-gradient(1200px 760px at 55% 115%, rgba(0,47,108,0.18), transparent 58%),
-      radial-gradient(900px 720px at 12% 112%, rgba(253,185,19,0.12), transparent 58%),
-
-      linear-gradient(180deg, #e7eefc 0%, #f1f5ff 42%, #f6f8fc 100%);
-
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-  }
-
-  .wrap{ max-width: 980px; margin: 0 auto; padding: 2.25rem 1.25rem 3rem; }
-
-  .hero{
-    display:flex; gap:1.6rem; align-items:flex-start; padding: 1.6rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.66));
-    border: 1px solid rgba(255,255,255,0.45);
-    border-radius: 18px;
-    box-shadow:
-      0 18px 50px rgba(0,0,0,0.12),
-      inset 0 0 0 1px rgba(0,47,108,0.06);
-    backdrop-filter: blur(10px);
-  }
-
-  .headshot{
-    width: 150px; height: 150px; border-radius: 18px; object-fit: cover;
-    border: 3px solid rgba(0,47,108,0.25);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.10);
-    background:#fff;
-    margin-top: 0.1rem;
-    flex: 0 0 auto;
-  }
-
-  h1{ margin: 0; font-size: 2rem; line-height: 1.15; color: var(--snhu-navy); letter-spacing: -0.02em; }
-  .subtitle{ margin: 0.35rem 0 0.7rem; font-size: 1.05rem; color: var(--muted); }
-
-  .hero-top{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap: 1rem;
-  }
-
-  .socials{
-    display:flex;
-    gap: 0.5rem;
-    align-items:center;
-    flex-wrap:wrap;
-    margin-top: 0.1rem;
-  }
-
-  .icon-btn{
-    width:40px;
-    height:40px;
-    display:grid;
-    place-items:center;
-    border-radius: 12px;
-    color: var(--snhu-navy);
-    background: rgba(255,255,255,.82);
-    border:1px solid rgba(0,0,0,.08);
-    transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
-    text-decoration:none;
-  }
-
-  .icon-btn svg{ width:20px; height:20px; }
-
-  .icon-btn:hover{
-    transform:translateY(-1px);
-    background:#fff;
-    box-shadow:0 12px 26px rgba(0,0,0,0.10);
-  }
-
-  .icon-btn:focus-visible{
-    outline:3px solid rgba(0,120,255,.35);
-    outline-offset:2px;
-  }
-
-  .pill-row{
-    display:flex;
-    flex-wrap: nowrap;
-    gap:0.5rem;
-    margin-top: 0.35rem;
-    overflow-x: auto;
-    padding-bottom: 0.15rem;
-  }
-
-  .pill{
-    display:inline-flex;
-    align-items:center;
-    gap: 0.4rem;
-    padding: 0.34rem 0.58rem;
-    border-radius: 999px;
-    font-size: 0.88rem;
-    background: rgba(255,255,255,0.92);
-    border:1px solid rgba(0,0,0,0.06);
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-  .pill strong{ color: var(--snhu-navy); }
-
-  .honors{
-    margin-top: 0.55rem;
-    display:flex;
-    align-items:center;
-    gap:0.5rem;
-    flex-wrap:wrap;
-    font-size: 0.92rem;
-    color: var(--muted);
-  }
-  .honors strong{ color: var(--snhu-navy); }
-
-  .honor-badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:0.45rem;
-    height:40px;
-    padding: 0 0.75rem;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.92);
-    border: 1px solid rgba(253,185,19,0.70);
-    box-shadow: 0 10px 22px rgba(0,0,0,0.06);
-    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-    text-decoration:none;
-  }
-  .honor-badge:hover{
-    transform: translateY(-1px);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
-    background:#fff;
-  }
-
-  .honor-badge img{ object-fit: contain; display:block; }
-
-  .honor-badge.nsls img{
-    width:64px;
-    height:38px;
-  }
-
-  .honor-badge.asl img{
-    width:30px;
-    height:30px;
-  }
-
-  .honor-text{
-    font-weight: 900;
-    letter-spacing: 0.06em;
-    color: #111;
-    line-height: 1;
-    transform: translateY(0.5px);
-  }
-
-  .nav-wrap{
-    margin-top: 0.9rem;
-    padding: 0.52rem 1rem;
-    border-radius: 14px;
-    background: rgba(0,47,108,0.94);
-    border: 1px solid rgba(0,47,108,0.35);
-    box-shadow: 0 14px 32px rgba(0,0,0,0.10);
-  }
-
-  .nav-bar{
-    display:flex;
-    align-items:center;
-    gap: 1rem;
-    flex-wrap:wrap;
-  }
-
-  .jump-label{
-    color: rgba(253,185,19,0.98);
-    font-weight: 900;
-    font-size: 0.98rem;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  .nav-links{
-    flex: 1;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 0.9rem;
-    flex-wrap:nowrap;
-    min-width: 0;
-  }
-
-  .nav-item{
-    display:flex;
-    align-items:center;
-    gap: 0.9rem;
-    min-width: 0;
-  }
-
-  .nav-links a{
-    color: rgba(253,185,19,0.98);
-    text-decoration:none;
-    font-weight: 850;
-    font-size: 0.98rem;
-    padding: 0.15rem 0.1rem;
-    border-bottom: 2px solid transparent;
-    transition: transform .12s ease, border-color .12s ease, opacity .12s ease;
-    white-space: nowrap;
-  }
-
-  .nav-links a:hover{
-    border-bottom-color: rgba(253,185,19,0.98);
-    transform: translateY(-1px);
-    opacity: 1;
-  }
-
-  .nav-links a:focus-visible{
-    outline: 3px solid rgba(253,185,19,0.55);
-    outline-offset: 2px;
-  }
-
-  .nav-sep{
-    color: rgba(253,185,19,0.55);
-    font-weight: 900;
-    user-select:none;
-  }
-
-  .section{
-    margin-top: 1.6rem; background: rgba(255,255,255,0.92); border:1px solid rgba(0,0,0,0.06);
-    border-radius: 18px; padding: 1.25rem 1.5rem;
-    box-shadow: 0 14px 32px rgba(0,0,0,0.05);
-  }
-  .section h2{
-    margin: 0 0 0.85rem; font-size: 1.25rem; color: var(--snhu-navy);
-    display:flex; align-items:center; gap:0.55rem;
-  }
-  .bar{ width: 10px; height: 18px; border-radius: 6px; background: var(--snhu-gold); display:inline-block; }
-
-  .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
-  .col-4{ grid-column: span 4; }
-  .col-6{ grid-column: span 6; }
-  .col-12{ grid-column: span 12; }
-
-  .card{
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 16px;
-    padding: 0.95rem;
-    background: rgba(255,255,255,0.96);
-    height: 100%;
-  }
-  .card h3{ margin: 0 0 0.35rem; color: var(--snhu-navy); font-size: 1.05rem; }
-  .muted{ color: var(--muted); }
-
-  .callout{
-    border: 1px solid rgba(253,185,19,0.55);
-    background: rgba(253,185,19,0.12);
-    border-radius: 16px;
-    padding: 1rem;
-  }
-
-  .capstone-grid{
-    margin-top: 0.9rem;
-  }
-
-  .pill-card{
-    display:flex;
-    flex-direction:column;
-    gap: 0.55rem;
-    height: 100%;
-  }
-
-  .mini-tile{
-    display:flex;
-    align-items:center;
-    gap:0.7rem;
-    padding: 0.75rem;
-    border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.06);
-    background: linear-gradient(135deg, rgba(0,47,108,0.12), rgba(0,0,0,0.02));
-    text-decoration:none;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.06);
-    transition: transform .12s ease, box-shadow .12s ease;
-  }
-
-  .mini-tile:hover{
-    transform: translateY(-1px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.10);
-  }
-
-  .mini-play{
-    width:52px;
-    height:52px;
-    border-radius: 999px;
-    display:grid;
-    place-items:center;
-    background: rgba(0,47,108,0.92);
-    color:#fff;
-    font-size: 1.25rem;
-    border: 3px solid rgba(253,185,19,0.85);
-    box-shadow: 0 16px 26px rgba(0,0,0,0.16);
-    flex: 0 0 auto;
-  }
-
-  .mini-title{
-    font-weight: 900;
-    color: var(--snhu-navy);
-    line-height: 1.15;
-  }
-  .mini-sub{
-    color: var(--muted);
-    font-size: 0.92rem;
-    margin-top: 0.15rem;
-  }
-
-  hr{ border:none; border-top:1px solid rgba(0,0,0,0.06); margin: 1.25rem 0; }
-
-  .footer{ margin-top: 1.25rem; text-align:center; color: var(--muted); font-size: 0.9rem; }
-
-  .cta-row{ display:flex; flex-wrap:wrap; gap:0.6rem; margin-top: 1rem; }
-  .btn{
-    display:inline-block; padding: 0.55rem 0.9rem; border-radius: 12px;
-    text-decoration:none; font-weight:650;
-    border:1px solid rgba(0,0,0,0.06); background:#fff; color: var(--snhu-navy);
-  }
-  .btn.primary{ background: var(--snhu-navy); color:#fff; border-color: rgba(0,47,108,0.35); }
-  .btn.accent{ background: rgba(253,185,19,0.23); color: var(--snhu-navy); border-color: rgba(253,185,19,0.55); }
-  .btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); }
-
-  .contact-card{ display:flex; flex-direction:column; gap: 0.65rem; }
-  .contact-actions{ display:flex; flex-wrap:wrap; gap: 0.6rem; margin-top: 0.25rem; }
-
-  .contact-link{
-    display:inline-flex;
-    align-items:center;
-    gap: 0.45rem;
-    padding: 0.52rem 0.75rem;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.96);
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 10px 22px rgba(0,0,0,0.06);
-    text-decoration:none;
-    color: var(--snhu-navy);
-    font-weight: 750;
-    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-  }
-  .contact-link:hover{
-    transform: translateY(-1px);
-    background:#fff;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
-  }
-  .contact-link svg{ width: 18px; height: 18px; }
-
-  @media (max-width: 900px){
-    .nav-links{ flex-wrap:wrap; justify-content:center; }
-    .nav-sep{ display:none; }
-  }
-
-  @media (max-width: 760px){
-    .hero{ flex-direction:column; text-align:center; align-items:center; }
-    .col-6, .col-4{ grid-column: span 12; }
-    .pill-row{ justify-content:center; }
-    .socials{ justify-content:center; }
-    .honors{ justify-content:center; }
-    .nav-wrap{ text-align:center; }
-    .nav-bar{ justify-content:center; }
-    .contact-actions{ justify-content:center; }
-  }
-</style>
+<head>
+  <link rel="stylesheet" href="assets/site.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 
 <div class="wrap">
 
@@ -398,7 +22,6 @@
               <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/>
             </svg>
           </a>
-
           <a class="icon-btn" href="https://www.linkedin.com/in/jason-fuller-2569347" target="_blank" rel="noopener"
              aria-label="Jason on LinkedIn" title="LinkedIn">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -425,13 +48,13 @@
       </div>
 
       <div class="pill-row">
-        <span class="pill"><strong>A.S.:</strong> Computer Science (’25) 4.0</span>
+        <span class="pill"><strong>A.S.:</strong> Computer Science (’25) GPA: 4.0/4.0</span>
         <span class="pill"><strong>B.S.:</strong> Computer Science (’26)</span>
         <i><span class="pill"><strong>MBA:</strong> Business Administration (’27)</span></i>
       </div>
 
       <div class="honors">
-        <strong>Honor Society's:</strong>
+        <strong>Honor Societies:</strong>
 
         <a class="honor-badge nsls" href="https://www.nsls.org/" target="_blank" rel="noopener" aria-label="NSLS" title="NSLS">
           <img src="assets/NSLS-Logo.png" alt="NSLS logo" />
@@ -466,67 +89,302 @@
   </div>
 
   <div class="section" id="about-me">
-    <h2><span class="bar"></span>About Me (Professional Self-Assessment)</h2>
-    <p>Coming soon...</p>
+    <h2><span class="bar"></span>Professional Self-Assessment</h2>
+
+    <h3>Executive Perspective</h3>
+
+    <p>
+      I am an infrastructure and platform engineering leader with more than two decades of experience delivering resilient, enterprise-scale systems for broadcast, media, and streaming environments. I returned to complete a Computer Science degree to formalize and modernize the foundation beneath that experience, strengthen my software engineering depth, and ensure my leadership remains aligned with the direction the industry is moving.
+    </p>
+
+    <p>
+      My career began in May 2000 as a help desk contractor at The Walt Disney Company. In December 2001, I was hired as a full-time employee and moved into scripting and automation work long before DevOps had a name. From there, each transition followed a consistent pattern: stabilize what is fragile, modernize what is aging, and build what the business will need next.
+    </p>
+
+    <p>
+      Over time, I have led teams across media storage, compute and storage platforms, CI/CD and state management, embedded engineering, automation and self-service platforms, hybrid cloud enablement, and resilience engineering. I currently operate at the executive level, accountable for platform reliability, modernization strategy, operational readiness, and technical risk reduction in high-visibility environments.
+    </p>
+
+    <h3>Why I Returned to Computer Science</h3>
+
+    <p>
+      In 2023, after moving my twins into their college dorms, I made the deliberate decision to return to higher education. It was both personal and professional. I wanted to finish what I had started decades earlier, lead by example for my family, and ensure that my leadership remains grounded in modern computer science principles rather than legacy habits.
+    </p>
+
+    <p>
+      While my career provided deep experiential learning, the program strengthened areas that matter in today’s software-driven world: algorithmic reasoning, modern language fluency, structured software engineering, database design beyond traditional relational models, and formal security thinking. It sharpened how I evaluate systems, not just how I operate them.
+    </p>
+
+    <h3>Growth Areas Strengthened Through the Program</h3>
+
+    <p>
+      The following competencies reflect how the Computer Science program refined and modernized my technical foundation. While my leadership experience spans decades, this academic journey sharpened precision, reinforced engineering discipline, and strengthened the formal computer science principles that now underpin both my executive decision making and my technical credibility.
+    </p>
+
+    <button class="toggle-btn"
+            onclick="toggleContent('growth-content', this, 'View Detailed Competency Breakdown', 'Hide Detailed Competency Breakdown')"
+            aria-expanded="false"
+            aria-controls="growth-content">
+      View Detailed Competency Breakdown
+    </button>
+
+    <div id="growth-content" class="collapsible">
+
+      <h4>Collaboration and Organizational Alignment</h4>
+      <p>
+        Throughout my career I have led cross-functional engineering teams, but the Computer Science program strengthened how I structure collaboration at the design level. Coursework in software development lifecycle, object-oriented analysis, and structured design reinforced the value of business requirements documents, solution design documentation, separation of concerns, and user-centric thinking. Applying formal methodologies such as Scrum and iterative design clarified how architectural decisions either enable or constrain collaboration. The program helped me sharpen how I define boundaries, document intent, and create systems that multiple engineers can extend safely and predictably.
+      </p>
+
+      <h4>Stakeholder Communication</h4>
+      <p>
+        As an executive leader, I regularly communicate infrastructure strategy to senior leadership. The program refined how I articulate technical tradeoffs in a disciplined and technically grounded way. Writing structured design narratives, documenting pseudocode, and presenting architectural diagrams strengthened my ability to explain not only what a system does, but why certain approaches were selected over alternatives. This reinforced my ability to translate between engineering detail and business impact without oversimplifying either.
+      </p>
+
+      <h4>Data Structures and Algorithmic Thinking</h4>
+      <p>
+        Experience develops instinct, but formal study sharpens precision. The program deepened my understanding of algorithmic efficiency, graph modeling, state management, and complexity analysis. Rather than relying solely on pattern recognition built over years of operational work, I strengthened my ability to evaluate correctness, performance tradeoffs, and scalability from first principles. This has influenced how I approach capacity planning, dependency analysis, and failure domain reduction in enterprise systems.
+      </p>
+
+      <h4>Software Engineering and Database Design</h4>
+      <p>
+        Modern infrastructure is increasingly software-defined, and the program reinforced disciplined engineering practices that align directly with that reality. Coursework emphasized modular architecture, layered design, controlled state transitions, testing discipline, and clear responsibility boundaries. Expanding beyond traditional relational databases into document-oriented modeling broadened how I think about persistence, indexing strategies, and workload-aligned schema design. This strengthened my ability to evaluate when flexibility, normalization, or performance should drive design decisions.
+      </p>
+
+      <h4>Security as a Design Responsibility</h4>
+      <p>
+        Security has always been part of my operational accountability, but the program formalized a more structured adversarial mindset. Coursework in secure coding and system design reinforced least-privilege access, input validation, encryption in transit, and deliberate trust boundary definition. It sharpened how I identify potential attack surfaces early in the design phase rather than addressing vulnerabilities reactively. This perspective aligns directly with my executive responsibility for platform governance, audit readiness, and operational resilience.
+      </p>
+
+    </div>
+
+
+    <h3>How This Portfolio Demonstrates Technical Leadership</h3>
+    <p>
+      This ePortfolio reflects a deliberate progression rather than a collection of disconnected projects. A foundational artifact was intentionally selected and enhanced across software engineering design, algorithmic rigor, and database integration to demonstrate breadth and depth within a unified system.
+    </p>
+
+    <p>
+      Each enhancement category builds on the previous one. Architectural structure establishes clarity and maintainability. Algorithmic refinement strengthens correctness and measurable reasoning. Database integration introduces persistence, scalability, and production awareness. Together, these layers reflect how real systems evolve over time through disciplined iteration rather than isolated feature development.
+    </p>
+    
+    <p>
+      The portfolio is designed to show more than functional code. It demonstrates structured problem solving, evaluation of tradeoffs, modern deployment practices, and embedded security considerations. It reflects how I approach technology as both an engineer and an executive: grounded in computer science principles, aligned to business outcomes, and intentional about long-term sustainability.
+    </p>
+
+    <p>
+      The sections that follow introduce the capstone context, the original artifact, and the enhancement strategy in greater detail, illustrating how these components work together to represent a cohesive and production-minded solution.
+    </p>
+
   </div>
 
   <div class="section" id="capstone">
     <h2><span class="bar"></span>Capstone Overview</h2>
 
-    <div class="callout">
-      <p style="margin:0;">
-        <strong>Project Summary:</strong> I selected a Python-based adventure game originally built as a console project in <strong>IT-140</strong>.
-        For CS 499, I enhanced this single artifact across all three required categories: Software Design & Engineering, Algorithms & Data Structures,
-        and Databases. This resulted in transforming it into a structured web application with persistent state and improved maintainability.
-      </p>
+    <!-- Clickable Logo Banner -->
+    <div style="text-align:center; margin-bottom:1.25rem;">
+      <a href="https://relicrush.onrender.com" target="_blank" rel="noopener">
+        <div style="
+          width:100%;
+          max-width:920px;
+          height:260px;
+          margin:0 auto;
+          overflow:hidden;
+          border-radius:18px;
+          box-shadow:0 18px 40px rgba(0,0,0,.18);
+          cursor:pointer;">
+          <img 
+            src="enhanced_artifacts/assets/logo_rectangle.png" 
+            alt="RelicRush Application Banner"
+            style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+        </div>
+      </a>
 
-      <div class="cta-row">
-        <a class="btn accent" href="https://relicrush.onrender.com" target="_blank" rel="noopener">Live Demo (Render / MongoDB Atlas)</a>
-        <a class="btn" href="https://github.com/fullerj79/fullerj79.github.io/tree/main/enhanced_artifacts" target="_blank" rel="noopener">Repository</a>
+      <div style="margin-top:.65rem; font-size:.85rem; color:var(--muted); letter-spacing:.02em;">
+        RelicRush | Enhanced CS 499 Capstone Artifact<br/>
+        Deployed on Render with MongoDB Atlas
       </div>
     </div>
 
-    <hr/>
 
-    <div class="grid capstone-grid">
-      <div class="col-4">
-        <div class="card pill-card">
-          <h3>Before</h3>
-          <ul class="muted" style="margin:0; padding-left: 1.2rem;">
-            <li>Single-file structure</li>
-            <li>Rigid console parsing</li>
-            <li>Hard-coded map + items</li>
-            <li>No persistence</li>
-          </ul>
-        </div>
+    <h3>Purpose of the Capstone</h3>
+
+    <p>
+      The objective of CS 499 is not simply to build software. It is to demonstrate the ability to evaluate an existing artifact, apply computer science principles deliberately, and evolve that artifact in ways that reflect professional engineering standards. The capstone requires structured enhancement across three domains: software engineering and design, algorithms and data structures, and databases.
+    </p>
+
+    <p>
+      Rather than selecting unrelated projects, I intentionally chose a single foundational artifact and enhanced it across all three categories. This approach allowed me to demonstrate architectural progression, algorithmic rigor, and persistent data modeling within one cohesive system.
+    </p>
+
+
+    <h3>Original Artifact</h3>
+
+    <p>
+      The starting point was a Python-based console adventure game originally developed in IT-140: Introduction to Scripting. The original version was a single-file program using dictionaries and control flow to manage room navigation and item collection. It achieved its academic goal, but architecturally it was tightly coupled, state was ephemeral, and there was no persistence, authentication, or deployment model.
+    </p>
+
+    <!-- ORIGINAL LABEL -->
+    <div style="text-align:center; font-size:.85rem; font-weight:600; letter-spacing:.05em; margin-top:2rem; color:var(--muted); text-transform:uppercase;">
+      Original Console Interface
+    </div>
+
+    <!-- ORIGINAL CONSOLE IMAGES SIDE BY SIDE -->
+    <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin:1.5rem auto 1rem auto; max-width:1100px;">
+
+      <a href="assets/original_start.jpg" target="_blank" rel="noopener" style="width:48%;">
+        <img 
+          src="assets/original_start.jpg"
+          alt="Original Console Instructions"
+          style="width:100%; height:auto; border-radius:16px; box-shadow:0 18px 40px rgba(0,0,0,.18);">
+      </a>
+
+      <a href="assets/original_win.jpg" target="_blank" rel="noopener" style="width:48%;">
+        <img 
+          src="assets/original_win.jpg"
+          alt="Original Console Win Screen"
+          style="width:100%; height:auto; border-radius:16px; box-shadow:0 18px 40px rgba(0,0,0,.18);">
+      </a>
+
+    </div>
+
+    <div style="text-align:center; font-size:.85rem; color:var(--muted); margin-bottom:1.75rem;">
+      Console-based CLI demonstrating instructional flow and successful completion state.
+    </div>
+
+    <!-- ORIGINAL BUTTONS -->
+    <div class="callout" style="margin-bottom:2rem;">
+      <div style="font-weight:600; margin-bottom:.75rem; text-align:center;">
+        Original Implementation
       </div>
 
-      <div class="col-4">
-        <div class="card pill-card">
-          <h3>After</h3>
-          <ul class="muted" style="margin:0; padding-left: 1.2rem;">
-            <li>Web UI (Dash)</li>
-            <li>FastAPI backend layer</li>
-            <li>Improved logic + scaling</li>
-            <li>MongoDB persistence</li>
-          </ul>
-        </div>
-      </div>
+      <div class="cta-row" style="justify-content:center;">
 
-      <div class="col-4">
-        <div class="card pill-card">
-          <h3>Code Review</h3>
+        <!-- GitHub Tile -->
+        <a class="mini-tile"
+          href="https://github.com/fullerj79/fullerj79.github.io/tree/main/original_artifacts"
+          target="_blank"
+          rel="noopener">
 
-          <a class="mini-tile" href="https://youtube.com/watch?v=p2sD07a2oUg" target="_blank" rel="noopener">
-            <div class="mini-play">▶</div>
-            <div>
-              <div class="mini-title">Watch the Code Review</div>
-              <div class="mini-sub">Artifact walkthrough + enhancement plan</div>
-            </div>
-          </a>
-        </div>
+          <div class="mini-play">
+            <i class="fa-brands fa-github"></i>
+          </div>
+
+          <div>
+            <div class="mini-title">View Original Repository</div>
+            <div class="mini-sub">Console-based IT-140 artifact</div>
+          </div>
+
+        </a>
+
+        <!-- YouTube Tile -->
+        <a class="mini-tile"
+          href="https://youtube.com/watch?v=p2sD07a2oUg"
+          target="_blank"
+          rel="noopener">
+
+          <div class="mini-play">
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+
+          <div>
+            <div class="mini-title">Watch the Code Review</div>
+            <div class="mini-sub">Walkthrough + plan</div>
+          </div>
+
+        </a>
+
       </div>
     </div>
+
+    <h3>Intentional Enhancement Strategy</h3>
+
+    <p>
+      The enhancements were structured deliberately to align directly with the CS 499 outcome categories while minimizing overlap. Software engineering improvements focused on architectural layering, modularity, validation boundaries, and deployment discipline. Algorithmic enhancements introduced graph modeling, breadth-first search validation, and deterministic scoring logic. Database integration introduced persistent identity, saved state management, indexing strategy, and secure configuration controls.
+    </p>
+
+    <p>
+      Each category builds upon the same artifact, allowing progression to be measured clearly. The result is a transformation from a classroom script into a layered, deployed, persistent application aligned with modern engineering practices.
+    </p>
+
+    <p>
+      <b>This progression demonstrates not feature expansion, but engineering maturity.</b>
+    </p>
+
+
+    <!-- ENHANCED LABEL -->
+    <div style="text-align:center; font-size:.85rem; font-weight:600; letter-spacing:.05em; margin-top:2.5rem; color:var(--muted); text-transform:uppercase;">
+      Enhanced Web Application
+    </div>
+
+    <!-- ENHANCED IMAGES SIDE BY SIDE -->
+    <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin:1.5rem auto 1rem auto; max-width:1100px;">
+
+      <a href="assets/main.jpg" target="_blank" rel="noopener" style="width:48%;">
+        <img 
+          src="assets/main.jpg"
+          alt="Enhanced Application Main Menu"
+          style="width:100%; height:auto; border-radius:16px; box-shadow:0 18px 40px rgba(0,0,0,.18);">
+      </a>
+
+      <a href="assets/gameplay.jpg" target="_blank" rel="noopener" style="width:48%;">
+        <img 
+          src="assets/gameplay.jpg"
+          alt="Enhanced Application Gameplay"
+          style="width:100%; height:auto; border-radius:16px; box-shadow:0 18px 40px rgba(0,0,0,.18);">
+      </a>
+
+    </div>
+
+    <div style="text-align:center; font-size:.85rem; color:var(--muted); margin-bottom:1.75rem;">
+      Web-based interface with authenticated sessions, persistent state, and deterministic scoring.
+    </div>
+
+  <!-- ENHANCED BUTTONS -->
+  <div class="callout" style="margin-top:2rem;">
+    <div style="font-weight:600; margin-bottom:.75rem; text-align:center;">
+      Enhanced Application
+    </div>
+
+    <div class="cta-row" style="justify-content:center;">
+
+      <!-- Live Demo Tile -->
+      <a class="mini-tile"
+        href="https://relicrush.onrender.com"
+        target="_blank"
+        rel="noopener">
+
+        <div class="mini-play">
+          <i class="fa-solid fa-rocket"></i>
+        </div>
+
+        <div>
+          <div class="mini-title">Launch Live Demo</div>
+          <div class="mini-sub">Render.com + MongoDB Atlas</div>
+        </div>
+
+      </a>
+
+      <!-- Enhanced GitHub Tile -->
+      <a class="mini-tile"
+        href="https://github.com/fullerj79/fullerj79.github.io/tree/main/enhanced_artifacts"
+        target="_blank"
+        rel="noopener">
+
+        <div class="mini-play">
+          <i class="fa-brands fa-github"></i>
+        </div>
+
+        <div>
+          <div class="mini-title">View Enhanced Repository</div>
+          <div class="mini-sub">MVC + persistence layer</div>
+        </div>
+
+      </a>
+
+    </div>
+  </div>
+
+
   </div>
 
   <div class="section" id="enhancements">
@@ -538,42 +396,452 @@
     </p>
 
     <div class="grid">
-      <div class="col-6">
-        <div class="card">
-          <h3>1) Software Design & Engineering</h3>
-          <p class="muted">
-            Refactored the project into a more maintainable architecture with clearer responsibilities, modular design,
-            and secure-first planning.
+      <div class="col-12">
+        <div class="section subsection" id="enhancement-1">
+
+          <h2>Enhancement 1 · Software Design & Engineering</h2>
+
+          <p class="lead">
+            This artifact began as a console-based Python adventure game created for an introductory scripting course. 
+            The original implementation demonstrated control flow, dictionaries, loops, and basic function decomposition. 
+            It met its academic objective, but architecturally it was intentionally constrained.
           </p>
-          <div class="cta-row">
-            <a class="btn primary" href="">Read Narrative</a>
+
+          <p>
+            In the original version, navigation, validation, state mutation, and output rendering were tightly coupled 
+            inside a single file. Data structures were hard-coded directly into the script. There was no persistence layer, 
+            no authentication, no environment separation, no structured logging, no automated verification, and no deployment strategy.
+          </p>
+
+          <div class="callout">
+            <strong>Transformation at a glance:</strong> 
+            a single-file console script became a layered web application with separation of concerns, authentication, 
+            secure configuration, structured logging, automated testing, and cloud deployment.
           </div>
+
+          <button class="toggle-btn"
+            onclick="toggleContent('enhancement1-content', this, 'Show Technical Details', 'Hide Technical Details')"
+            aria-expanded="false"
+            aria-controls="enhancement1-content">
+            Show Technical Details
+          </button>
+
+          <div id="enhancement1-content" class="collapsible">
+
+            <h3>Architectural Refactor</h3>
+
+            <p>
+              The most significant improvement was architectural separation. The original artifact centralized responsibility 
+              in a procedural loop with direct access to shared state. In the enhanced version, responsibilities are distributed 
+              across clear layers.
+            </p>
+
+            <p>
+              Controllers orchestrate workflows. Domain models encapsulate state transitions and business rules. 
+              Behavior modules isolate policy logic. Repository classes abstract persistence. 
+              Views handle presentation. Utilities provide cross-cutting concerns such as structured logging.
+            </p>
+
+            <div class="diagram-placeholder">
+              Insert Architecture Diagram Here – MVC + Deployment Overview
+            </div>
+
+            <h3>Project Structure</h3>
+
+        <pre>
+        project/
+        │
+        ├── app.py
+        ├── controllers/
+        ├── models/
+        │   ├── domain/
+        │   ├── behavior/
+        │   └── repositories/
+        ├── db/
+        ├── views/
+        ├── tests/
+        └── utils/
+        </pre>
+
+            <p>
+              The system evolved from fewer than 200 lines in one file to a layered structure designed for maintainability, 
+              extensibility, and testability.
+            </p>
+
+            <h3>Authentication and Secure Configuration</h3>
+
+            <p>
+              A complete authentication workflow was introduced with signup and login pages backed by MongoDB Atlas. 
+              Passwords are never stored in plain text. They are salted, hashed, and combined with a server-side pepper 
+              stored securely in environment configuration.
+            </p>
+
+            <div class="img-row">
+              <div class="figure">
+                <img src="assets/login.jpg" alt="Login screen" style="height:170px; width:auto;" />
+                <div class="small-cap">Login interface with credential validation</div>
+              </div>
+
+              <div class="figure">
+                <img src="assets/signup.jpg" alt="Signup screen" style="height:170px; width:auto;" />
+                <div class="small-cap">Signup workflow with salted and peppered hashing</div>
+              </div>
+            </div>
+
+            <h3>Testability and Verification</h3>
+
+            <p>
+              Automated testing using pytest was introduced across controllers, domain logic, and repositories. 
+              Coverage reporting provides measurable verification rather than assumed correctness.
+            </p>
+
+            <div class="img-row">
+              <div class="figure">
+                <img src="assets/pytestresults.jpg" style="width:520px; max-width:100%;" alt="Pytest results" />
+                <div class="small-cap">Automated test execution with coverage reporting</div>
+              </div>
+            </div>
+
+            <h3>Observability and Logging</h3>
+
+            <p>
+              Print statements were replaced with centralized structured logging. 
+              Application events are captured with defined severity levels to improve traceability.
+            </p>
+
+            <div class="img-row">
+              <div class="figure">
+                <img src="assets/logger.jpg" style="width:520px; max-width:100%;" alt="Logger output" />
+                <div class="small-cap">Centralized logging for traceability</div>
+              </div>
+            </div>
+
+            <h3>Deployment and CI/CD</h3>
+
+            <p>
+              The application is deployed on Render with continuous deployment. 
+              Environment variables inject configuration securely at runtime. 
+              The pipeline rebuilds automatically on repository commits.
+            </p>
+
+            <div class="img-row">
+              <div class="figure">
+                <img src="assets/renderdeploy.jpg" style="width:460px; max-width:100%;" alt="Render deployment" />
+                <div class="small-cap">Render deployment with automated CI/CD</div>
+              </div>
+            </div>
+
+            <h3>Engineering Growth Reflected</h3>
+
+            <p>
+              This enhancement reflects the shift from writing functional scripts to engineering systems designed to evolve. 
+              The project now demonstrates separation of concerns, secure configuration, verification through testing, 
+              structured logging, and production-ready deployment patterns.
+            </p>
+
+          </div>
+
         </div>
       </div>
 
-      <div class="col-6">
-        <div class="card">
-          <h3>2) Algorithms & Data Structures</h3>
-          <p class="muted">
-            Improved correctness and scalability by refining game logic, validating actions reliably,
-            and selecting appropriate data structures.
+      <div class="col-12">
+        <div class="section subsection" id="enhancement-2">
+
+          <h2>Enhancement 2 · Algorithms & Data Structures</h2>
+
+          <p class="lead">
+            The original artifact solved gameplay with procedural control flow and hard-coded logic.
+            It worked, but it did not formally model state, difficulty, or algorithmic guarantees.
           </p>
-          <div class="cta-row">
-            <a class="btn primary" href="">Read Narrative</a>
+
+          <p>
+            In this enhancement, the system was rebuilt around explicit domain models,
+            graph-based reasoning, and deterministic scoring logic.
+            Game state is authoritative, difficulty selects behavior through strategy objects,
+            and Breadth-First Search (BFS) computes optimal moves to anchor scoring in measurable correctness.
+          </p>
+
+          <div class="callout">
+            <strong>Transformation at a glance:</strong>
+            gameplay moved from procedural mutation to explicit state modeling,
+            graph traversal guarantees, and policy-driven difficulty selection.
+          </div>
+
+          <button class="toggle-btn"
+            onclick="toggleContent('enhancement2-content', this, 'Show Technical Details', 'Hide Technical Details')"
+            aria-expanded="false"
+            aria-controls="enhancement2-content">
+            Show Technical Details
+          </button>
+
+          <div id="enhancement2-content" class="collapsible">
+
+            <h3>GameState as Authoritative Model</h3>
+
+            <p>
+              GameState now tracks player position, visited rooms, collected items (as sets),
+              move count, lifecycle status, timestamps, and event logs.
+              State transitions are explicit and testable.
+            </p>
+
+        <pre>
+        GameState
+        - visited_rooms: set[str]
+        - collected_items: set[str]
+        - move_count: int
+        - status: GameStatus
+        - encountered_villain: bool
+        </pre>
+
+            <h3>Difficulty via Enum + Strategy</h3>
+
+            <p>
+              Difficulty resolves visibility policies and scoring strategies
+              rather than branching conditionals throughout the codebase.
+            </p>
+
+        <pre>
+        Difficulty
+        - visibility_policy
+        - scoring_policy
+        - scoring_strategy
+        </pre>
+
+            <h3>Graph Modeling + BFS</h3>
+
+            <p>
+              The map is treated as a graph. BFS computes shortest-path baselines,
+              guaranteeing solvability and enabling objective efficiency scoring.
+            </p>
+
+            <h3>Deterministic Scoring</h3>
+
+            <p>
+              Scoring combines progress, efficiency, and difficulty multipliers.
+              Efficiency is measured against BFS-derived optimal_moves,
+              making performance measurable and defensible.
+            </p>
+
           </div>
         </div>
       </div>
 
       <div class="col-12">
-        <div class="card">
-          <h3>3) Databases</h3>
-          <p class="muted">
-            Added persistence with MongoDB to support user profiles, saved progress, dynamic level loading,
-            and scalable gameplay design.
+        <div class="section subsection" id="enhancement-3">
+
+          <h2>Enhancement 3 · Databases</h2>
+
+          <p class="lead">
+            This enhancement moved the project from in-memory, hard-coded runtime state
+            to a persistent, production-aligned application backed by MongoDB Atlas.
+            The original artifact stored all game state inside a single loop and lost
+            everything on exit. There was no user identity, saved progress, or leaderboard history.
           </p>
-          <div class="cta-row">
-            <a class="btn primary" href="">Read Narrative</a>
+
+          <p>
+            In the enhanced version, persistence is a first-class capability.
+            Users can create accounts, authenticate securely, save progress, resume sessions,
+            and compete on leaderboards. This required intentional schema design,
+            index strategy, repository abstractions, environment isolation,
+            and security controls aligned with real-world engineering expectations.
+          </p>
+
+          <div class="callout">
+            <strong>Transformation at a glance:</strong>
+            ephemeral state became secure, durable, queryable data through MongoDB Atlas,
+            enforced by least-privilege access, IP restrictions, indexed collections,
+            and repository-driven persistence boundaries.
           </div>
+
+          <button class="toggle-btn"
+            onclick="toggleContent('enhancement3-content', this, 'Show Technical Details', 'Hide Technical Details')"
+            aria-expanded="false"
+            aria-controls="enhancement3-content">
+            Show Technical Details
+          </button>
+
+          <div id="enhancement3-content" class="collapsible">
+
+            <h3>Persistence Model and Data Boundaries</h3>
+
+            <p>
+              Persistence was designed around natural document boundaries:
+              user identity, saved game state, and completed run history.
+              MongoDB is a strong fit because these domains evolve independently
+              while maintaining clear structural boundaries.
+            </p>
+
+            <div class="diagram-placeholder">
+              Insert Single Diagram Here – UI → Controllers → Repositories → MongoDB Atlas
+            </div>
+
+            <h3>MongoDB Atlas Configuration and Security Controls</h3>
+
+            <p>
+              MongoDB Atlas mirrors production posture.
+              Database users are configured with least privilege.
+              Network access is restricted via IP allow lists.
+              TLS is enforced for all connections.
+              Secrets are injected at runtime and never committed to source control.
+            </p>
+
+            <div class="img-row">
+              <div class="figure">
+                <div class="placeholder">
+                  Placeholder: Atlas Network Access (IP allow list)
+                </div>
+                <div class="small-cap">
+                  Network restrictions limiting database access to approved environments.
+                </div>
+              </div>
+
+              <div class="figure">
+                <div class="placeholder">
+                  Placeholder: Atlas Database User (least privilege role)
+                </div>
+                <div class="small-cap">
+                  Role-scoped database user restricted to required collections.
+                </div>
+              </div>
+            </div>
+
+            <p class="small">
+              Environment variables manage MongoDB URI, database name, authentication pepper,
+              and runtime flags through <code>.env</code> and <code>.env.test</code>.
+            </p>
+
+            <h3>Schema Bootstrapping and Index Strategy</h3>
+
+            <p>
+              A bootstrap process initializes collections and applies indexes.
+              This ensures predictable performance and repeatable environment setup.
+            </p>
+
+        <pre>
+        Bootstrap Responsibilities
+        - Ensure collections exist
+        - Apply required indexes
+        - Align indexes to query workload
+
+        Index Strategy
+        - users: unique index on username/email
+        - saves: compound index on (user_id, updated_at)
+        - history: index for leaderboard sorting and filtering
+        </pre>
+
+            <h3>Repository Layer and Query Design</h3>
+
+            <p>
+              Persistence is isolated behind repository classes.
+              Controllers orchestrate behavior.
+              Repositories encapsulate data access.
+              Domain models remain storage-agnostic.
+            </p>
+
+        <pre>
+        Repositories
+        - UserRepo: create and fetch users
+        - SaveRepo: persist and resume game state
+        - HistoryRepo: record runs and query leaderboard
+        - LevelRepo: provide level definitions
+        </pre>
+
+            <p>
+              The repository abstraction allows a MongoDB-backed implementation
+              for production and an in-memory substitute for testing.
+              This keeps tests fast and deterministic without sacrificing correctness.
+            </p>
+
+            <h3>User Identity and Password Storage</h3>
+
+            <p>
+              Passwords are never stored in plain text.
+              Each credential is salted and hashed,
+              combined with a server-side pepper stored securely in environment configuration.
+              Identity fields enforce uniqueness at the database level.
+            </p>
+
+            <div class="img-row">
+              <div class="figure">
+                <div class="placeholder">
+                  Placeholder: users collection document structure
+                </div>
+                <div class="small-cap">
+                  Username, hash, salt, timestamps. No plaintext credentials.
+                </div>
+              </div>
+            </div>
+
+            <h3>Game Saves, Run History, and Leaderboards</h3>
+
+            <p>
+              Persistence supports three core workflows:
+              saved sessions, historical results, and leaderboard ranking.
+            </p>
+
+            <p>
+              Saved games capture player position, collected items, move count, and lifecycle state.
+              History documents record score, difficulty, and optimal move baselines.
+              Leaderboards require indexed sorting and filtering across difficulty and level.
+            </p>
+
+            <div class="img-row">
+              <div class="figure">
+                <div class="placeholder">
+                  Placeholder: Leaderboard UI
+                </div>
+                <div class="small-cap">
+                  Ranked results derived from indexed history queries.
+                </div>
+              </div>
+
+              <div class="figure">
+                <div class="placeholder">
+                  Placeholder: Saved Game UI
+                </div>
+                <div class="small-cap">
+                  Resume functionality backed by persisted state.
+                </div>
+              </div>
+            </div>
+
+            <h3>Testing Strategy and In-Memory Option</h3>
+
+            <p>
+              Repository implementations support both MongoDB and in-memory variants.
+              Unit tests use the in-memory repositories for speed and isolation.
+              Integration tests validate MongoDB-backed behavior when required.
+            </p>
+
+            <h3>Why This Matters</h3>
+
+            <p>
+              Database integration is not a feature toggle.
+              It is an architectural decision that defines boundaries,
+              performance characteristics, and security posture.
+            </p>
+
+            <p>
+              This enhancement demonstrates production-ready database engineering:
+              least privilege configuration,
+              network restrictions,
+              index-aligned query design,
+              repository abstraction,
+              and testable persistence boundaries.
+            </p>
+
+            <h3>Engineering Growth Reflected</h3>
+
+            <p>
+              The project evolved from local, temporary state to durable,
+              secure, queryable workflows. MongoDB Atlas provides persistence,
+              but the real growth is architectural discipline:
+              explicit data modeling, controlled access,
+              performance-aware indexing, and testable abstractions.
+            </p>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -626,5 +894,29 @@
   <div class="footer">
     © 2026 Jason Fuller · Built with GitHub Pages
   </div>
+
+  <script>
+  /* =====================================================================
+    GENERIC COLLAPSIBLE CONTROLLER
+    Used by all enhancement sections
+    ===================================================================== */
+
+  function toggleContent(contentId, button, collapsedText, expandedText) {
+    const content = document.getElementById(contentId);
+    const isOpen  = content.style.display === "block";
+
+    if (!isOpen) {
+      content.style.display = "block";
+      button.textContent = expandedText;
+      button.setAttribute("aria-expanded", "true");
+
+    } else {
+      content.style.display = "none";
+      button.textContent = collapsedText;
+      button.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  </script>
 
 </div>

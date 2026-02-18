@@ -120,7 +120,7 @@ class InMemoryLevelRepository(LevelRepository):
 
 
 # ------------------------------------------------------------------
-# MongoDB implementation (production)
+# MongoDB implementation
 # ------------------------------------------------------------------
 
 class MongoLevelRepository(LevelRepository):

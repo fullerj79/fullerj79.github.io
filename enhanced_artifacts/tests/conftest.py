@@ -155,7 +155,7 @@ def game_controller(level_repo, save_repo, history_repo):
 
 
 # ============================================================
-# Isolated collection fixtures (branch-heavy tests only)
+# Isolated collection fixtures
 # ============================================================
 
 @pytest.fixture

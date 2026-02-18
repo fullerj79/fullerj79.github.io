@@ -27,8 +27,8 @@ Logging:
 - Downstream controllers, repositories, and domain layers
   perform all structured logging
 
-Deploy note (Render):
-- Render expects `server = app.server` at module scope
+Deploy note (Render.com):
+- Render expects 'server = app.server' at module scope
 """
 
 # ------------------------------------------------------------------

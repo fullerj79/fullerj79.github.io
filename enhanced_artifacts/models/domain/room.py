@@ -61,5 +61,5 @@ class Room:
     """
 
     name: str
-    exits: dict[str, str]           # direction → room_name
+    exits: dict[str, str]           # direction > room_name
     item: Optional[Item] = None
